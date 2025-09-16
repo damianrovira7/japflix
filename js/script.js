@@ -30,7 +30,8 @@ btnBuscar.addEventListener('click', () => {
         if (resultados) {
             return `
            <li class="list-group-item">
-           ${crearOverflow(peli)} 
+           ${crearOverflow(peli)}
+           </li> 
            `;
         }
     }).filter(peli => peli !== undefined).join('');
@@ -72,11 +73,15 @@ function calificar(votar) {
 
 function crearOverflow(peli) {
     const offcanva = `offcanvas${peli.id}`;
+    const colapso = `collapse${peli.id}`;
+    const anio = peli.release_date ? peli.release_date.split('-')[0] : 'N/A';
     return `
     <button class="btn btn-link" data-bs-toggle="offcanvas" href="#${offcanva}" role="button" aria-controls="${offcanva}">
     <div class="row">
         <div class="col-4">
-            <img src="${peli.image_url}" class="img-fluid" alt="${peli.title}">
+            <div class="img-cont">
+            <img src="${peli.image_url}" class="img-card-fit" alt="${peli.title}">
+            </div>
         </div>
         <div class="col-8">
             <h5>${peli.title}</h5>
@@ -85,7 +90,7 @@ function crearOverflow(peli) {
         </div>
     </div>
 </button>
-<div class="offcanvas offcanvas-start" tabindex="-1" id="${offcanva}" aria-labelledby="${offcanva}Label">
+<div class="offcanvas offcanvas-top" tabindex="-1" id="${offcanva}" aria-labelledby="${offcanva}Label">
   <div class="offcanvas-header">
     <h5 class="offcanvas-title" id="${offcanva}Label">${peli.title}</h5>
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -95,10 +100,19 @@ function crearOverflow(peli) {
     <p><strong>Tagline:</strong> ${peli.tagline}</p>
     <p><strong>Genres:</strong> ${peli.genres.map(g => g.name).join(', ')}</p>
     <p><strong>Overview:</strong> ${peli.overview}</p>
-    <p><strong>Release Date:</strong> ${peli.release_date}</p>
     <p><strong>Rating:</strong> ${calificar(peli.vote_average)} (${peli.vote_count} votes)</p>
-    <p><strong>Original Language:</strong> ${peli.original_language}</p>
+    <button class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#${colapso}" aria-expanded="false" aria-controls="${colapso}">
+    Ver mas
+    </button>
   </div>
+    <div class="collapse mt-2" id="${colapso}">
+        <div class="card card-body">
+            <p><strong>Año de lanzamiento:</strong> ${peli.release_date || 'N/A'}</p>
+            <p><strong>Tiempo de duracion:</strong> ${peli.runtime ? peli.runtime + ' minutes' : 'N/A'}</p>
+            <p><strong>Presupuesto:</strong> ${peli.budget ? '$' + peli.budget.toLocaleString() : 'N/A'}</p>
+            <p><strong>Recaudacion:</strong> ${peli.revenue ? '$' + peli.revenue.toLocaleString() : 'N/A'}</p>
+        </div>
+    </div>
 </div>
     `;
 }

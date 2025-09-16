@@ -25,6 +25,7 @@ main {
 
 .offcanvas-top{
     height: fit-content;
+    color: black;
 }
 
 li.list-group-item {
@@ -35,4 +36,5 @@ li.list-group-item {
 p {
     margin-bottom: 0;
 }
+
 
