@@ -48,6 +48,15 @@ buscar.addEventListener('keypress', lol => {
 }
 )
 
+function mostrarPeliculas(peliculas) {
+    const items = peliculas.map(peli => `
+        <li class="list-group-item">
+        ${crearOverflow(peli)}
+        </li>
+    `).join('');
+    lista.innerHTML = items;
+}
+
 function calificar(votar) {
     const estrellas = [];
     const calificacion = Math.floor(votar / 2);
