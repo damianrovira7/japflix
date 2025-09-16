@@ -26,3 +26,8 @@ main {
 .offcanvas-top{
     height: fit-content;
 }
+
+.offcanvas-body{
+    padding: 0;
+}
+
