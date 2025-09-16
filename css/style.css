@@ -26,7 +26,13 @@ main {
 .offcanvas-top{
     height: fit-content;
 }
-.offcanvas-body{
-    height: fit-content;
+
+li.list-group-item {
+    background-color: #212529;
+    color: white;
+}
+
+p {
+    margin-bottom: 0;
 }
 
