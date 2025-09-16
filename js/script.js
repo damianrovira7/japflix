@@ -3,7 +3,6 @@ const buscar = document.getElementById('inputBuscar');
 const btnBuscar = document.getElementById('btnBuscar');
 let pelis = [];
 
-crearOverflow();
 cargarPeliculas();
 
 function cargarPeliculas() {
@@ -36,7 +35,7 @@ btnBuscar.addEventListener('click', () => {
         }
     }).filter(peli => peli !== undefined).join('');
 
-    lista.innerHTML = films.join('');
+    lista.innerHTML = films;
 });
 
 buscar.addEventListener('input', lol => {
