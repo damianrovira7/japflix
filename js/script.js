@@ -4,6 +4,7 @@ const btnBuscar = document.getElementById('btnBuscar');
 let pelis = [];
 
 crearOverflow();
+cargarPeliculas();
 
 function cargarPeliculas() {
     fetch('https://japceibal.github.io/japflix_api/movies-data.json')
